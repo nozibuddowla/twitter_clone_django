@@ -1,0 +1,15 @@
+.btn-outline-primary {
+    color: #717b76 !important;
+    border-style: none !important;
+}
+.btn-outline-primary:hover {
+    color: blue !important;
+    background-color: #7bc4f1 !important;
+    /* border-style: none !important; */
+}
+
+.btn-outline-primary:focus, .btn-outline-primary:active {
+    background-color: #7bc4f1; /* Twitter blue */
+    color: blue; 
+    border-color: #1DA1F2;
+}

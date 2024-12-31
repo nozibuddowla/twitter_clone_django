@@ -27,9 +27,10 @@ Home / Twitter
         <div>
             <label for="text" class="form-label"></label>
             {% if form.instance.pk %}
-                <textarea class="form-control" id="text" name="text" rows="5" placeholder="What is happening?" required>{{ form.text.value }}</textarea>
+                <textarea class="form-control" id="text" name="text" rows="5" placeholder="What is happening?" required maxlength="240" oninput="updateCharacterCount(this)">{{ form.text.value }}</textarea>
+
             {% else %}
-                <textarea class="form-control" id="text" name="text" rows="5" placeholder="What is happening?" required></textarea>
+            <textarea class="form-control" id="text" name="text" rows="5" placeholder="What is happening?" required maxlength="240" oninput="updateCharacterCount(this)"></textarea>
             {% endif %}
         </div>
         <div class="mb-3">
@@ -40,4 +41,19 @@ Home / Twitter
         <a href="{% url 'index' %}" class="btn btn-primary">Back to tweets page</a>
     </form>
 </div>
+<script>
+    function updateCharacterCount(textarea) {
+        const maxLength = 240;
+        const currentLength = textarea.value.length;
+        const remainingLength = maxLength - currentLength;
+        const characterCountElement = document.getElementById('character-count');
+
+        characterCountElement.textContent = remainingLength + ' characters remaining';
+
+        if (remainingLength < 0) {
+            textarea.value = textarea.value.substring(0, maxLength);
+            characterCountElement.textContent = '0 characters remaining';
+        }
+    }
+</script>
 {% endblock content %}
